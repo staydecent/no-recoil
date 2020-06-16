@@ -1,0 +1,46 @@
+{
+  "name": "no-recoil",
+  "version": "0.0.1",
+  "description": "A state management library for React",
+  "main": "dist/no-recoil.js",
+  "module": "dist/no-recoil.m.js",
+  "source": "src/no-recoil.js",
+  "scripts": {
+    "build": "microbundle --jsx React.createElement --external react --no-compress",
+    "prepublishOnly": "npm run build",
+    "pretest": "npm run build && standard --verbose | snazzy",
+    "test": "tape test/*.js | faucet"
+  },
+  "standard": {
+    "ignore": [
+      "dist"
+    ]
+  },
+  "files": [
+    "dist",
+    "src/no-recoil.js"
+  ],
+  "keywords": [
+    "preact",
+    "react",
+    "state management",
+    "redux"
+  ],
+  "author": "Adrian Unger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/staydecent/no-recoil/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/staydecent/no-recoil.git"
+  },
+  "homepage": "https://github.com/staydecent/no-recoil#readme",
+  "devDependencies": {
+    "faucet": "^0.0.1",
+    "microbundle": "^0.12.1",
+    "snazzy": "^8.0.0",
+    "standard": "^14.3.4",
+    "tape": "^5.0.1"
+  }
+}
