@@ -1,6 +1,6 @@
 {
   "name": "no-recoil",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A state management library for React",
   "main": "dist/no-recoil.js",
   "module": "dist/no-recoil.m.js",
