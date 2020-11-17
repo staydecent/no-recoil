@@ -6,10 +6,13 @@
   "module": "dist/no-recoil.m.js",
   "source": "src/no-recoil.js",
   "scripts": {
+    "preinstall": "if test -z \"$NODE_ENV\"; then rm .git/hooks/pre-commit; cp pre-commit.sh .git/hooks/pre-commit; fi",
+    "prettier": "prettier --write src/",
+    "pretest": "prettier --check src/",
+    "test": "tape test/*.js | faucet",
+    "prebuild": "npm run prettier",
     "build": "microbundle --jsx React.createElement --external react --no-compress",
-    "prepublishOnly": "npm run build",
-    "pretest": "npm run build && standard --verbose | snazzy",
-    "test": "tape test/*.js | faucet"
+    "prepublishOnly": "npm run build"
   },
   "standard": {
     "ignore": [
@@ -37,10 +40,11 @@
   },
   "homepage": "https://github.com/staydecent/no-recoil#readme",
   "devDependencies": {
-    "faucet": "^0.0.1",
-    "microbundle": "^0.12.1",
-    "snazzy": "^8.0.0",
-    "standard": "^14.3.4",
-    "tape": "^5.0.1"
-  }
+    "faucet": "0.0.1",
+    "lint-staged": "10.5.1",
+    "microbundle": "0.12.4",
+    "prettier": "2.1.2",
+    "tape": "5.0.1"
+  },
+  "dependencies": {}
 }
