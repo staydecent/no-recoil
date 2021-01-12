@@ -6,11 +6,10 @@
   "module": "dist/no-recoil.m.js",
   "source": "src/no-recoil.js",
   "scripts": {
-    "preinstall": "if test -z \"$NODE_ENV\"; then rm .git/hooks/pre-commit; cp pre-commit.sh .git/hooks/pre-commit; fi",
-    "prettier": "prettier --write src/",
+    "format": "prettier --write src/",
     "pretest": "prettier --check src/",
     "test": "tape test/*.js | faucet",
-    "prebuild": "npm run prettier",
+    "prebuild": "npm run format",
     "build": "microbundle --jsx React.createElement --external react --no-compress",
     "prepublishOnly": "npm run build"
   },
