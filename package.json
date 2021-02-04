@@ -8,7 +8,9 @@
   "scripts": {
     "build": "microbundle --jsx React.createElement --external react --no-compress",
     "prepublishOnly": "npm run build",
-    "pretest": "npm run build && standard --verbose | snazzy",
+    "format": "prettier --write src/",
+    "lint": "prettier --check src/",
+    "pretest": "npm run lint",
     "test": "tape test/*.js | faucet"
   },
   "standard": {
@@ -38,9 +40,8 @@
   "homepage": "https://github.com/staydecent/no-recoil#readme",
   "devDependencies": {
     "faucet": "^0.0.1",
-    "microbundle": "^0.12.1",
-    "snazzy": "^8.0.0",
-    "standard": "^14.3.4",
-    "tape": "^5.0.1"
+    "microbundle": "^0.13.0",
+    "prettier": "^2.2.1",
+    "tape": "^5.1.1"
   }
 }
