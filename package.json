@@ -39,10 +39,10 @@
   },
   "homepage": "https://github.com/staydecent/no-recoil#readme",
   "devDependencies": {
-    "lint-staged": "10.5.1",
-    "microbundle": "0.12.4",
-    "prettier": "2.1.2",
-    "tape": "5.0.1"
+    "lint-staged": "10.5.3",
+    "microbundle": "0.13.0",
+    "prettier": "^2.2.1",
+    "tape": "5.1.1"
   },
   "dependencies": {}
 }
