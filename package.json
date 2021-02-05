@@ -20,6 +20,7 @@
   },
   "files": [
     "dist",
+    "devtools.js",
     "src/no-recoil.js"
   ],
   "keywords": [
