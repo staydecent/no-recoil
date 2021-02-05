@@ -10,6 +10,21 @@ function setAtom(key, val) {
   return sym;
 }
 
+function getAtom(sym, path, def) {
+  if (path == null) {
+    return atoms.get(sym.description);
+  }
+  path = path.split('.');
+  let val = atoms.get(sym.description);
+  for (let x = 0; x < path.length; x++) {
+    if (val == null) {
+      return def;
+    }
+    val = val[path[x]];
+  }
+  return val == null ? def : val;
+}
+
 export function store() {
   return {
     getState() {
@@ -35,7 +50,7 @@ export function selector(key, getter) {
 
 export function select(selectorSym) {
   const getter = atoms.get(selectorSym.description);
-  const get = (sym) => atoms.get(sym.description);
+  const get = (...args) => getAtom(...args);
   return (...args) => {
     return getter({ get }, ...args);
   };
@@ -43,7 +58,7 @@ export function select(selectorSym) {
 
 export function mutation(key, setter) {
   setAtom(key, setter); // ensure uniquely named
-  const get = (sym) => atoms.get(sym.description);
+  const get = (...args) => getAtom(...args);
   const set = (sym, val) => {
     atoms.set(sym.description, val);
     for (let x = 0; x < listeners.length; x++) {
@@ -63,9 +78,9 @@ export function mutation(key, setter) {
 export function useSelector(selectorSym) {
   const [sym, setSym] = useState();
   const select = atoms.get(selectorSym.description);
-  const get = (atomSym) => {
+  const get = (atomSym, path, def) => {
     setSym(atomSym);
-    return atoms.get(atomSym.description);
+    return getAtom(atomSym, path, def);
   };
   const state = useState(select({ get }));
   useEffect(() => {
